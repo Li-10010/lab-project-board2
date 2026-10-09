@@ -1,0 +1,14 @@
+/* 全局基础样式：整个网站都生效 */
+
+/* 让所有元素的宽高计算包含内边距和边框，布局更好算 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
+  line-height: 1.6;
+  color: #1f2328;
+  background: #f5f6f8;
+}
