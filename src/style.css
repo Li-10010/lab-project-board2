@@ -1,5 +1,98 @@
 /* 全局基础样式：整个网站都生效 */
 
+/* ---- 主题变量 ----
+   把颜色都抽成"变量"（--开头的名字）。组件里不再直接写死颜色，而是用 var(--名字) 引用。
+   好处：只要换掉 <html> 上的 data-theme，整套颜色就一起变了，不用一个个文件去改。 */
+:root {
+  /* 告诉浏览器当前是浅色，滚动条、下拉框等原生控件会跟着变浅 */
+  color-scheme: light;
+
+  /* 文字 */
+  --text-primary: #1f2328;
+  --text-secondary: #57606a;
+  --text-muted: #8b949e;
+
+  /* 背景与面板 */
+  --bg-page: #f5f6f8;
+  --bg-panel: #ffffff;
+  --bg-subtle: #f5f6f8;
+
+  /* 边框与分割线 */
+  --border: #e6e8eb;
+  --border-strong: #d8dce1;
+  --border-hover: #c9ced6;
+  --divider: #f0f1f3;
+
+  /* 主色（聚焦边框、链接） */
+  --accent: #378add;
+  --link: #0c447c;
+
+  /* 主要按钮（新增项目、提交） */
+  --btn-bg: #1f2328;
+  --btn-bg-hover: #3a4048;
+  --btn-text: #ffffff;
+
+  /* 危险操作（删除） */
+  --danger: #a32d2d;
+  --danger-bg: #e24b4a;
+
+  /* 状态标签 */
+  --status-doing-text: #0c447c;
+  --status-doing-bg: #e6f1fb;
+  --status-done-text: #3b6d11;
+  --status-done-bg: #eaf3de;
+  --status-paused-text: #854f0b;
+  --status-paused-bg: #faeeda;
+  --status-other-text: #5f5e5a;
+  --status-other-bg: #f1efe8;
+
+  /* 主题开关 */
+  --switch-bg: #e9ebee;
+  --switch-thumb: #ffffff;
+}
+
+/* ---- 深色模式 ----
+   给 <html> 加上 data-theme="dark" 时，上面那些变量换成这一套值。
+   组件完全不用改，颜色会自动跟着换。 */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --text-primary: #e6edf3;
+  --text-secondary: #adbac7;
+  --text-muted: #8b949e;
+
+  --bg-page: #0d1117;
+  --bg-panel: #161b22;
+  --bg-subtle: #1c232c;
+
+  --border: #30363d;
+  --border-strong: #3d444d;
+  --border-hover: #4d5560;
+  --divider: #21262d;
+
+  --accent: #4a9eff;
+  --link: #79c0ff;
+
+  --btn-bg: #1f6feb;
+  --btn-bg-hover: #388bfd;
+  --btn-text: #ffffff;
+
+  --danger: #f85149;
+  --danger-bg: #da3633;
+
+  --status-doing-text: #79c0ff;
+  --status-doing-bg: #10304f;
+  --status-done-text: #7ee787;
+  --status-done-bg: #17351f;
+  --status-paused-text: #e3b341;
+  --status-paused-bg: #3a2c0e;
+  --status-other-text: #b3bcc7;
+  --status-other-bg: #242b33;
+
+  --switch-bg: #21262d;
+  --switch-thumb: #3d444d;
+}
+
 /* 让所有元素的宽高计算包含内边距和边框，布局更好算 */
 * {
   box-sizing: border-box;
@@ -9,6 +102,10 @@ body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
   line-height: 1.6;
-  color: #1f2328;
-  background: #f5f6f8;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  /* 切换主题时颜色平滑过渡，不会"啪"地一下闪过去 */
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
